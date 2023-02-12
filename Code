@@ -5,7 +5,7 @@ using namespace std;
 char board[3][3]={{'1', '2', '3'},{'4', '5', '6'},{'7', '8', '9'}};
 char c_marker;
 int c_player;
-void drawB(){
+void drawB(){			//This Function prints out integers in such a pattern that it looks like board
 	cout<<endl<<endl;
     cout<<" "<<board[0][0]<<" | "<<board[0][1]<<" | "<<board[0][2]<<endl;
     cout<<"------------\n";
@@ -14,22 +14,22 @@ void drawB(){
     cout<<" "<<board[2][0]<<" | "<<board[2][1]<<" | "<<board[2][2]<<endl;
     cout<<endl<<endl;
 }
-bool placepoint(int slot){
-    int row=slot/3;
-    int col;
-    if(slot%3==0){
+bool placepoint(int slot){	//Function used to input slots 
+    int row=slot/3;		//Instead of this,an easier option is that the programmer can take rows and column separately from the player.
+    int col;			//But it would be difficult for the payer that is playing the game.
+    if(slot%3==0){		//This is done for finding fixed location for marker to be placed
         row=row-1;
         col=2;
     }else
     col=(slot%3)-1;
-    if(board[row][col]=='X' || board[row][col]=='O')
+    if(board[row][col]=='X' || board[row][col]=='O')		//If is used to check whether the location is currently occupied or not
    { board[row][col]=c_marker;
-    return true;}
+    return true;}			//Function returns true is space is currently occupied else returns false
     else
     return false;
 }
 int winner(){
-    
+    //winner fuction is used to determine which player wins the game
     for(int i=0;i<3;i++){
         if(board[i][0]==board[i][1] && board[i][1]==board[i][2])
         return c_player;
@@ -42,7 +42,7 @@ int winner(){
         return c_player;
     return 0;
 }
-void marker_player_swap(){
+void marker_player_swap(){		//This function swaps marker and user so that other user can play
     if(c_marker=='X')
     c_marker='O';
     else c_marker='X';
@@ -59,20 +59,20 @@ void game(){
     c_marker=mark;
     c_player=1;  
         //For 9 moves,making max 9 moves
-    for(int i=0;i<9;i++){
+    for(int i=0;i<9;i++){			//Game can be played in maximum 9 turns
         cout<<"It's "<<c_player<<" turn, Enter spot :: ";
         cin>>slot;
-        if(slot<1&&slot>9)
+        if(slot<1&&slot>9)			//If user inputs wrong slot
         {
             cout<<"Invalid slot";
             continue;
         }
-        if(!placepoint(slot)){
+        if(!placepoint(slot)){			//If executes if placepoint return false, Or the place is occupied
             cout<<"Slot is occupied, Try again";
             i--;
             continue;
         }
-        drawB();
+        drawB();			//calling function to draw board
         win=winner();
         if(win==1){
             cout<<"\nPlayer 1 has won! Congragulation";

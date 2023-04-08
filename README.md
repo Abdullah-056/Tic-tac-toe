@@ -1,3 +1,4 @@
+# README
 In this Tic Tac Toe game implemented in C++, the user will be able to play against another player.
 The game will start with a blank 3x3 grid and the user will be prompted to enter the spot adjecent to the numbers placed in row and column where they want to place their symbol.
 The user will then take its turn and place its symbol in an available spot on the grid. 
